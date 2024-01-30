@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .main {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            background-color: black;
+        }
+
+        .movable {
+            height: 300px;
+            width: 300px;
+            border-radius: 100px;
+            position: absolute;
+            background-color: green;
+            opacity: 0;
+            cursor: pointer;
+            border: 5px solid;
+            transform: translate(-50%, -50%);
+            animation: bg_color2 500ms linear forwards;
+        }
+
+        @keyframes bg_color2 {
+            0% {
+                filter: blur(2px) hue-rotate(0deg);
+                transform: scale(1) translate(-50%, -50%);
+                opacity: 1;
+            }
+
+            100% {
+                filter: blur(2px) hue-rotate(360deg);
+                transform: scale(0) translate(-50%, -50%);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="movable"></div>
+
+    </div>
+
+    <script>
+        document.addEventListener('click', () => {
+            let box = document.body;
+
+            box.addEventListener('mousemove', (event) => {
+                createAndMoveDiv(event.clientX, event.clientY);
+            });
+
+            function createAndMoveDiv(x, y) {
+                let div = document.createElement('div');
+                div.classList.add('movable');
+                div.style.left = x + 'px';
+                div.style.top = y + 'px';
+                div.style.opacity = "1"
+
+                box.appendChild(div);
+
+                
+              
+            }
+        });
+    </script>
+</body>
+
+</html>
